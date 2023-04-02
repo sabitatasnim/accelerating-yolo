@@ -1,8 +1,6 @@
 [submodule "yolov5"]
 	path = yolov5
 	url = https://github.com/davendramaharaj1/yolov5.git
-
 [submodule "Vitis-AI"]
 	path = Vitis-AI
 	url = https://github.com/Xilinx/Vitis-AI.git
-	branch = 2.5
