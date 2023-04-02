@@ -7,6 +7,9 @@
 #include <vitis/ai/dpu_task.hpp>
 #include <vitis/ai/nnpp/yolov3.hpp>
 
+/**
+ * class represents the Vitis AI Library YOLO Runner to run inference on the DPU
+*/
 class YOLORunner {
 
     public:
@@ -42,4 +45,25 @@ class YOLORunner {
          * @param[out]  YOLOv3Result object
         */
         vitis::ai::YOLOv3Result run(cv::Mat img);
+};
+
+/**
+ * class represents a bounding box for an image in its original size
+*/
+class BoundingBox {
+
+    public:
+        int _label;                             /* classification label */
+        float _conf;                            /* prediction confidence */
+        float _x_min,_y_min;                    /* bounding box coordinates */
+        float _width, _height;                  /* image width and height */
+
+        /**
+         * constructor
+         * 
+         * @param[in]   bb  bounding box from post processing
+         * @param[in]   img_width   original width of the image
+         * @param[in]   img_height  original height of the image
+        */
+        BoundingBox(vitis::ai::YOLOv3Result::BoundingBox bb, float img_width, float img_height);
 };
