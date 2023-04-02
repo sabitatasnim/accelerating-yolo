@@ -1,5 +1,6 @@
 #include <string>
 #include <memory>
+#include <fstream>
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
@@ -9,10 +10,14 @@
 class YOLORunner {
 
     public:
-        std::unique_ptr<vitis::ai::DpuTask> dpuTask;
-        std::vector<vitis::ai::library::InputTensor> i_tensor;
+
         int height = 0;
         int width = 0;
+        cv::Size model_input_size;
+        std::unique_ptr<vitis::ai::DpuTask> dpuTask;
+        vitis::ai::proto::DpuModelParam model_prototxt;
+        std::vector<vitis::ai::library::InputTensor> i_tensor;
+        std::vector<vitis::ai::library::OutputTensor> o_tensor;
 
         /**
          * Constructor
@@ -20,7 +25,7 @@ class YOLORunner {
          * @param[in]   model_path path to the xmodel file
          * @param[out]  YOLORunner object
         */
-        YOLORunner(std::string model_path);
+        YOLORunner(std::string model_path, std::string prototxt_path);
 
         /**
          * Preprocessor
