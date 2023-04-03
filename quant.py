@@ -184,7 +184,7 @@ def evaluate(model, data_loader):
             # loss += compute_loss(train_out, targets, model)[1][:3].cpu()  # GIoU, obj, cls
 
         # Run NMS
-        output = non_max_suppression(inf_out, conf_thres=conf_thres, nms_thres=nms_thres)
+        output = non_max_suppression(inf_out, conf_thres=conf_thres, labels=targets)
 
         # Statistics per image
         for si, pred in enumerate(output):
@@ -237,7 +237,7 @@ def evaluate(model, data_loader):
 
     # Compute statistics
     stats = [np.concatenate(x, 0) for x in list(zip(*stats))]  # to numpy
-    p, r, ap, f1, ap_class = ap_per_class(*stats)
+    tp, fp, p, r, ap, f1, ap_class = ap_per_class(*stats)
     mp, mr, map, mf1 = p.mean(), r.mean(), ap.mean(), f1.mean()
 
     # Return results
