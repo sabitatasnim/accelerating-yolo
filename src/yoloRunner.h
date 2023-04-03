@@ -2,11 +2,13 @@
 #include <memory>
 #include <fstream>
 #include <vector>
+#include <glog/logging.h>
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include <vitis/ai/dpu_task.hpp>
 #include <vitis/ai/nnpp/yolov3.hpp>
+#include <google/protobuf/text_format.h>
 
 /**
  * class represents the Vitis AI Library YOLO Runner to run inference on the DPU
