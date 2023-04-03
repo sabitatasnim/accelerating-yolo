@@ -4,3 +4,4 @@
 [submodule "Vitis-AI"]
 	path = Vitis-AI
 	url = https://github.com/Xilinx/Vitis-AI.git
+	branch = 2.5

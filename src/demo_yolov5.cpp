@@ -53,9 +53,6 @@ int main(int argc, char* argv[]) {
     /* draw boxes on img */ 
     for(auto& box : b_boxes) {
 
-      int label = box._label;
-      float confidence = box._conf;
-
       float xmin = std::max(0.0f, box._x_min);
       float ymin = std::max(0.0f, box._y_min);
       float xmax = std::min(box._x_min + box._width, (float)img.cols - 1.0f);
